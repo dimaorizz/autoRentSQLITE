@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/form.css">
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/table.css">
+    <link rel="stylesheet" href="/css/default.css">
+    <link rel="stylesheet" href="/css/edit.css">
+    <link rel="stylesheet" href="/css/nav.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="main-block">
+        {{>nav}}
+        <h1>Branches</h1>
+        <form action="/branches" method="POST">
+            <label for="">City</label>
+            <input type="text" name="city" id="model">
+            <label for="">Adress</label>
+            <input type="text" name="adress" id="">
+            <button type="submit" id="add-btn">Add</button>
+        </form>
+        <table border="1">
+            <tr>
+                <td>ID</td>
+                <td>City</td>
+                <td>Adress</td>
+                <td>Action</td>
+            </tr>
+            {{#each branches}}
+                <tr>
+                    <td>{{this.id}}</td>
+                    <td>{{this.city}}</td>
+                    <td>{{this.adress}}</td>
+                    <td>
+                        <button id="delete-btn" data-id="{{this.id}}" data-url="/branches">Delete</button>
+                        <button id="edit-btn" class="edit-btn" data-entity="branch" data-id="{{this.id}}" data-path="/branches">Edit</button>
+                    </td>
+                </tr> 
+            {{/each}}
+        </table>
+    </div>
+
+    <div style="text-align: center" id="popupWin" class="modalwin">
+        <h2>Edit</h2>
+        <form>
+            <label for="">City</label>
+            <input value="" class="editInputs" data-field="city">
+            <label for="">Adress</label>
+            <input type="text" name="" id="" class="editInputs" data-field="adress">
+            <button id="save-btn" type="submit" data-id="">Save</button>
+        </form>
+
+    </div> 
+
+
+    <script src="/js/delete-btn.js"></script>
+    <script src="/js/edit-btn.js"></script>
+</body>
+</html>

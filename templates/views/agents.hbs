@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/form.css">
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/table.css">
+    <link rel="stylesheet" href="/css/default.css">
+    <link rel="stylesheet" href="/css/edit.css">
+    <link rel="stylesheet" href="/css/nav.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="main-block">
+        {{>nav}}
+        <h1>Agents</h1>
+        <form action="/agents" method="POST">
+            <label for="">Surname</label>
+            <input type="text" name="surname" id="model">
+            <label for="">First Name</label>
+            <input type="text" name="firstName" id="">
+            <label for="">Second Name</label>
+            <input type="text" name="secondName" id="">
+            <label for="">Branch</label>
+            <select name="BranchId" id="">
+                {{#each branches}}
+                    <option value="{{this.id}}">{{this.city}}, {{this.adress}}</option>
+                {{/each}}
+            </select>
+            <button type="submit" id="add-btn">Add</button>
+        </form>
+        <table border="1">
+            <tr>
+                <td>ID</td>
+                <td>BranchID</td>
+                <td>Surname</td>
+                <td>First Name</td>
+                <td>Second Name</td>
+                <td>Actions</td>
+            </tr>
+            {{#each agents}}
+                <tr>
+                    <td>{{this.id}}</td>
+                    <td>{{this.BranchId}}</td>
+                    <td>{{this.surname}}</td>
+                    <td>{{this.firstName}}</td>
+                    <td>{{this.secondName}}</td>
+                    <td>
+                        <button id="delete-btn" data-id="{{this.id}}" data-url="/agents">Delete</button>
+                        <button id="edit-btn" class="edit-btn" data-entity="agents" data-id="{{this.id}}" data-path="/agents">Edit</button>
+                    </td>
+                </tr> 
+            {{/each}}
+        </table>
+    </div>
+
+    <div style="text-align: center" id="popupWin" class="modalwin">
+        <h2>Edit</h2>
+        <form>
+            <label for="">Surname</label>
+            <input value="" class="editInputs" data-field="surname">
+            <label for="">First Name</label>
+            <input type="text" name="" id="" class="editInputs" data-field="firstName">
+            <label for="">Second Name</label>
+            <input type="text" name="" id="" class="editInputs" data-field="secondName">
+            <label for="">Branch</label>
+            <select data-field="BranchId" class="editInputs" name="BranchId" id="">
+                {{#each branches}}
+                    <option class="option" value="{{this.id}}">{{this.city}}, {{this.adress}}</option>
+                {{/each}}
+            </select>
+            <button id="save-btn" type="submit" data-id="">Save</button>
+        </form>
+
+    </div> 
+
+
+    <script src="/js/delete-btn.js"></script>
+    <script src="/js/edit-btn.js"></script>
+</body>
+</html>

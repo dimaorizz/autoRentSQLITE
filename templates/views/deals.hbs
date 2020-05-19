@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/form.css">
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/table.css">
+    <link rel="stylesheet" href="/css/default.css">
+    <link rel="stylesheet" href="/css/edit.css">
+    <link rel="stylesheet" href="/css/nav.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="main-block">
+        {{>nav}}
+        <h1>Deals</h1>
+        <form action="/deals" method="POST">
+            <label for="">Car</label>
+            <select name="CarId" id="">
+                {{#each cars}}
+                    <option value="{{this.id}}">{{this.brand}}, {{this.color}}, {{this.cost}}$</option>
+                {{/each}}
+            </select>
+            <label for="">Client</label>
+            <select name="ClientId" id="">
+                {{#each clients}}
+                    <option value="{{this.id}}">{{this.surname}}, {{this.phone}}</option>
+                {{/each}}
+            </select>
+            <label for="">Rental Days</label>
+            <input type="number" name="rentalDays" id="">
+            <button type="submit" id="add-btn">Add</button>
+        </form>
+        <table border="1">
+            <tr>
+                <td>ID</td>
+                <td>CarID</td>
+                <td>CientID</td>
+                <td>Rental Days</td>
+                <td>Actions</td>
+            </tr>
+            {{#each deals}}
+                <tr>
+                    <td>{{this.id}}</td>
+                    <td>{{this.CarId}}</td>
+                    <td>{{this.ClientId}}</td>
+                    <td>{{this.rentalDays}}</td>
+                    <td>
+                        <button id="delete-btn" data-id="{{this.id}}" data-url="/deals">Delete</button>
+                        <button id="edit-btn" class="edit-btn" data-entity="deal" data-id="{{this.id}}" data-path="/deals">Edit</button>
+                    </td>
+                </tr> 
+            {{/each}}
+        </table>
+    </div>
+
+    <div style="text-align: center" id="popupWin" class="modalwin">
+        <h2>Edit</h2>
+        <form>
+            <label for="">Car</label>
+            <select data-field="CarId" class="editInputs" name="CarId" id="">
+                {{#each cars}}
+                    <option class="option" value="{{this.id}}">{{this.brand}}, {{this.color}}, {{this.cost}}$</option>
+                {{/each}}
+            </select>
+            <label for="">Client</label>
+            <select data-field="ClientId" class="editInputs" name="ClientId" id="">
+                {{#each clients}}
+                    <option class="option" value="{{this.id}}">{{this.surname}}, {{this.phone}}</option>
+                {{/each}}
+            </select>
+            <label for="">Rental Days</label>
+            <input type="number" name="" id="" class="editInputs" data-field="rentalDays">
+            <button id="save-btn" type="submit" data-id="">Save</button>
+        </form>
+
+    </div> 
+
+
+    <script src="/js/delete-btn.js"></script>
+    <script src="/js/edit-btn.js"></script>
+</body>
+</html>

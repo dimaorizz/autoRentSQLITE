@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/form.css">
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/table.css">
+    <link rel="stylesheet" href="/css/default.css">
+    <link rel="stylesheet" href="/css/edit.css">
+    <link rel="stylesheet" href="/css/nav.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="main-block">
+        {{>nav}}
+        <h1>Clients</h1>
+        <form action="/clients" method="POST">
+            <label for="">First Name</label>
+            <input type="text" name="firstName" id="model">
+            <label for="">Surname</label>
+            <input type="text" name="surname" id="">
+            <label for="">Second Name</label>
+            <input type="text" name="secondName" id="model">
+            <label for="">Phone</label>
+            <input type="text" name="phone" id="model">
+            <label for="">Successful Deals</label>
+            <input type="number" name="successfulDeals" id="model">
+            <label for="">FailedDeals</label>
+            <input type="number" name="failedDeals" id="model">
+            <button type="submit" id="add-btn">Add</button>
+        </form>
+        <table border="1">
+            <tr>
+                <td>ID</td>
+                <td>First Name</td>
+                <td>Surname</td>
+                <td>Second Name</td>
+                <td>Phone</td>
+                <td>Successful Deals</td>
+                <td>Failed Deals</td>
+                <td>Actions</td>
+            </tr>
+            {{#each clients}}
+                <tr>
+                    <td>{{this.id}}</td>
+                    <td>{{this.firstName}}</td>
+                    <td>{{this.surname}}</td>
+                    <td>{{this.secondName}}</td>
+                    <td>{{this.phone}}</td>
+                    <td>{{this.successfulDeals}}</td>
+                    <td>{{this.failedDeals}}</td>
+                    <td>
+                        <button id="delete-btn" data-id="{{this.id}}" data-url="/clients">Delete</button>
+                        <button id="edit-btn" class="edit-btn" data-entity="clients" data-id="{{this.id}}" data-path="/clients">Edit</button>
+                    </td>
+                </tr> 
+            {{/each}}
+        </table>
+    </div>
+
+    <div style="text-align: center" id="popupWin" class="modalwin">
+        <h2>Edit</h2>
+        <form>
+            <label for="">First Name</label>
+            <input value="" class="editInputs" data-field="firstName">
+            <label for="">Surname</label>
+            <input value="" class="editInputs" data-field="surname">
+            <label for="">Second Name</label>
+            <input value="" class="editInputs" data-field="secondName">
+            <label for="">Phone</label>
+            <input value="" class="editInputs" data-field="phone">
+            <label for="">Successful Deals</label>
+            <input type="number" value="" class="editInputs" data-field="successfulDeals">
+            <label for="">Failed Deals</label>
+            <input type="number" name="" id="" class="editInputs" data-field="failedDeals">
+            <button id="save-btn" type="submit" data-id="">Save</button>
+        </form>
+
+    </div> 
+
+
+    <script src="/js/delete-btn.js"></script>
+    <script src="/js/edit-btn.js"></script>
+</body>
+</html>
